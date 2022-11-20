@@ -7,3 +7,10 @@ se ocupara PostgreSQL, por lo que se necesita de un paquete que nos ayude
 a tener la conexión entre el servidor y nuestra BD.
 
 El paquete a ocupar de para conectar la BD y NodeJs será **pg** 
+
+### Instalación de paquetes
+Debido a que el archivo package.json esta en el repositorio bastará el siguiente comando
+
+`npm install`
+
+Una vez que se tengan instalados los paquetes se puede comenzar a trabajar con la **API**
