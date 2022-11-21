@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
     console.log(resultado);
     res.status(201).json({
         message : "success creating!"
-    })
+    });
 };
 
 exports.delete = async (req,res) => {
