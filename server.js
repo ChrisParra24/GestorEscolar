@@ -6,6 +6,5 @@ const app = require('./app');
 const PORT = process.env.PORT;
 
 app.listen(PORT , ()=>{
-    console.log(`App running on port ${PORT}`);
-    // console.log(`Pass de BD: ${process.env.DATABASE_PASSWORD.concat('#')}`);
+    console.log(`[+] App runing on http://127.0.0.1:${PORT}`);
 });

@@ -1,5 +1,5 @@
 const express = require('express');
-const controller = require('../controllers/statusController');
+const controller = require('../controllers/horariosController');
 
 const router = express.Router();
 
@@ -13,3 +13,4 @@ router.route('/:nombre')
     .delete(controller.delete)
 
 module.exports = router;
+

@@ -1,7 +1,8 @@
 const express = require('express');
-const controller = require('../controllers/statusController');
+const controller = require('../controllers/maestrosController');
 
 const router = express.Router();
+
 
 router.route('/')
     .get(controller.getAll)
@@ -13,3 +14,4 @@ router.route('/:nombre')
     .delete(controller.delete)
 
 module.exports = router;
+

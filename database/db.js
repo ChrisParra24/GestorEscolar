@@ -10,7 +10,7 @@ const pool = new Pool({
     
 pool.connect((error) => {
     if(error){
-        console.log(`Error de conexion con BD: ${error}`);
+        console.log(`[!] Error de conexion con BD: ${error}`);
     }
 });
 
