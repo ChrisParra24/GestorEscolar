@@ -1,6 +1,7 @@
 const db = require('../database/db');
 const utils = require('./utils');
 
+// 127.0.0.1/alumnos
 exports.getAll = async (req,res) => {
     const query = "SELECT * FROM alumnos";
     const resultado = await db.query(query);
@@ -8,6 +9,7 @@ exports.getAll = async (req,res) => {
     utils.check(res,resultado.rowCount,resultado.rows);
 };
 
+// 127.0.0.1/alumnos/id
 exports.get = async (req,res) => {
     const id = req.params.id;
     let query = "SELECT alumnos.id, alumnos.usuariosid, alumnos.matricula, usuarios.nombrepila, usuarios.apppaterno, "

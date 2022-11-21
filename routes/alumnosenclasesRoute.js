@@ -8,7 +8,17 @@ router.route('/')
     .get(controller.getAll)
     .post(controller.create);
 
-router.route('/:id')
+router.route('/:alumnoid/:claseid')
+    .get(controller.get)
+    .put(controller.update)
+    .delete(controller.delete);
+
+router.route('/alumno/:alumnoid')
+    .get(controller.get)
+    .put(controller.update)
+    .delete(controller.delete);
+
+router.route('/clase/:claseid')
     .get(controller.get)
     .put(controller.update)
     .delete(controller.delete);

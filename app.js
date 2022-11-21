@@ -15,6 +15,7 @@ const horariosRoute = require('./routes/horariosRoute');
 const maestrosRoute = require('./routes/maestrosRoute');
 const periodosRoute = require('./routes/periodosRoute');
 const usuariosRoute = require('./routes/usuariosRoute');
+const loginRoute = require('./routes/loginRoute');
 
 
 const app = express();
@@ -33,5 +34,6 @@ app.use('/api/v1/horarios',horariosRoute);
 app.use('/api/v1/maestros',maestrosRoute);
 app.use('/api/v1/periodos',periodosRoute);
 app.use('/api/v1/usuarios',usuariosRoute);
+app.use('/api/v1/login',loginRoute);
 
 module.exports = app;
