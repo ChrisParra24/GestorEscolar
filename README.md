@@ -16,3 +16,13 @@ npm install
 ~~~
 
 Una vez que se tengan instalados los paquetes se puede comenzar a trabajar con la **API**
+
+### Levantamiento del servidor
+Para poder levantar el servidor solo se necesita que se corra el siguiente comando
+
+~~~
+npm run start
+~~~
+
+Una vez que se levante el servidor, se pueden seguir haciendo cambios y no es necesario apagar el
+servidor, ya que la herramienta nodemon, nos permite trabajar y ver los cambios reflejados.
