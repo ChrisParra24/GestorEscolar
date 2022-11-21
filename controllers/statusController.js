@@ -1,19 +1,19 @@
 const db = require('../database/db');
+const utils = require('./utils');
 
 exports.getAll = async (req,res) => {
     const query = "SELECT * FROM status";
-    const { rows } = await db.query(query);
-    res.status(200).json(rows)
+    const resultado = await db.query(query);
+
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.get = async (req,res) => {
-    const nombre = req.params.nombre;
-    const query = "SELECT * FROM status WHERE status = $1";
-    const {rows} = await db.query(query,[nombre]);
-    res.status(200).json({
-        message : "success!",
-        data : rows
-    });
+    const id = req.params.id;
+    const query = "SELECT * FROM status WHERE id = $1";
+    const resultado = await db.query(query,[id]);
+
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.create = async (req, res) => {
@@ -21,9 +21,7 @@ exports.create = async (req, res) => {
     const query = "INSERT INTO status (status) VALUES ($1)";
     const resultado = await db.query(query,[status]);
     console.log(resultado);
-    res.status(201).json({
-        message : "success creating!"
-    });
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.delete = async (req,res) => {
@@ -31,10 +29,9 @@ exports.delete = async (req,res) => {
     const query = "DELETE FROM status WHERE status = $1";
     const resultado = await db.query(query,[nombre]);
     console.log(resultado);
-    res.status(200).json({
-        message : "success deleting"
-    });
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
+
 
 exports.update = async (req,res) => {
     const name = req.params.nombre;
@@ -44,7 +41,5 @@ exports.update = async (req,res) => {
     const resultado = await db.query(query,[status,name]);
     console.log(resultado);
 
-    res.status(200).json({
-        message : "success updating!" 
-    });
+    utils.check(res,resultado.rowCount,resultado.rows);
 };

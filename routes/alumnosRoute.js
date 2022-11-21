@@ -7,10 +7,10 @@ router.route('/')
     .get(controlleer.getAll)
     .post(controlleer.create);
 
-router.route('/:nombre')
-    .get(controlleer.get)
-    .put(controlleer.update)
-    .delete(controlleer.delete)
+router.route('/:id')
+    .get(controller.get)
+    .put(controller.update)
+    .delete(controller.delete);
 
 module.exports = router;
 

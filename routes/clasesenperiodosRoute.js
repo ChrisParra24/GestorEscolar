@@ -9,10 +9,10 @@ router.route('/')
     .get(controller.getAll)
     .post(controller.create);
 
-router.route('/:nombre')
+router.route('/:id')
     .get(controller.get)
     .put(controller.update)
-    .delete(controller.delete)
+    .delete(controller.delete);
 
 module.exports = router;
 

@@ -7,7 +7,7 @@ const pool = new Pool({
     user : process.env.DATABASE_USER,
     password : process.env.DATABASE_PASSWORD.concat('#')
 });
-    
+
 pool.connect((error) => {
     if(error){
         console.log(`[!] Error de conexion con BD: ${error}`);

@@ -1,62 +1,46 @@
 const db = require('../database/db');
-
-exports.checkNombre = (req,res,next,value) => {
-    if(typeof(value) !== 'string'){
-        res.status(404).json({
-            message : "Incorrect input format"
-        });
-    }
-    next();
-};
+const utils = require('./utils');
 
 exports.getAll = async (req,res)=>{
     const query = "SELECT * FROM materias";
-    const {rows} = await db.query(query);
-    res.status(200).json({
-        message : "success!",
-        data : rows
-    });
+    const resultado = await db.query(query);
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.get = async (req,res) => {
-    const name = req.params.nombre;
-    const query = "SELECT * FROM materias WHERE nombre = $1";
-    const {rows} = await db.query(query,[name]);
-    res.status(200).json({
-        message : "success!",
-        data : rows
-    });
+    const id = req.params.id;
+    const query = "SELECT * FROM materias WHERE id = $1";
+    const resultado = await db.query(query,[id]);
+    utils.check(res,resultado.rowCount,resultado.rows);
+};
+
+exports.delete = async (req,res) => {
+    const id = req.params.id;
+    const query = "DELETE FROM materias WHERE id = $1";
+    const resultado = await db.query(query,[id]);
+
+    console.log(resultado);
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.create = async (req, res) => {
     const nombre = req.body.nombre;
-    const query = "INSERT INTO materias (nombre) VALUES ($1)";
-    const resultado = await db.query(query,[nombre]);
-    console.log(resultado);
-    res.status(201).json({
-        message : "success creating!"
-    });
-};
+    const statusid = req.body.statusid;
+    const query = "INSERT INTO materias (nombre,statusid) VALUES ($1,$2)";
+    const resultado = await db.query(query,[nombre,statusid]);
 
-exports.delete = async (req,res) => {
-    const nombre = req.params.nombre;
-    const query = "DELETE FROM materias WHERE nombre = $1";
-    const resultado = await db.query(query,[nombre]);
     console.log(resultado);
-    res.status(200).json({
-        message : "success deleting"
-    });
+    utils.check(res,resultado.rowCount,resultado.rows);
 };
 
 exports.update = async (req,res) => {
-    const name = req.params.nombre;
+    const id = req.params.id;
+    const statusid = req.body.statusid;
     const {nombre} = req.body;
 
-    const query = "UPDATE materias SET nombre = $1 WHERE nombre = $2";
-    const resultado = await db.query(query,[nombre,name]);
-    console.log(resultado);
+    const query = "UPDATE materias SET nombre = $1,  statusid = $2 WHERE id = $3";
+    const resultado = await db.query(query,[nombre,statusid,id]);
 
-    res.status(200).json({
-        message : "success updating!" 
-    });
+    console.log(resultado);
+    utils.check(res,resultado.rowCount,resultado.rows);
 };

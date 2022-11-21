@@ -1,4 +1,5 @@
 const db = require('../database/db');
+const utils = require('./utils');
 
 exports.getAll = async (req,res) => {
     const query = "SELECT * FROM maestros";
