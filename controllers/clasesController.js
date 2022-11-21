@@ -9,7 +9,7 @@ exports.getAll = async (req,res) => {
 
 exports.get = async (req,res) => {
     const nombre = req.params.nombre;
-    const query = "SELECT * FROM clases WHERE status = $1";
+    const query = "SELECT * FROM clases WHERE id = $1";
     const resultado = await db.query(query,[nombre]);
     utils.check(res,resultado.rowCount,resultado.rows);
 };

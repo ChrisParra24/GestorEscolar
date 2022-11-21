@@ -66,8 +66,8 @@ CREATE TABLE Horarios (
   id         uuid DEFAULT gen_random_uuid() NOT NULL, 
   HoraInicio time NOT NULL, 
   HoraFin    time NOT NULL, 
-  Dia        date NOT NULL, 
-  EsVirtual  bytea DEFAULT 'False' NOT NULL, 
+  Dia        varchar(150) NOT NULL, 
+  EsVirtual  boolean DEFAULT 'False' NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Maestros (
   Id            uuid DEFAULT gen_random_uuid() NOT NULL, 
