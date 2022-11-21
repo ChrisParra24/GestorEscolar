@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS Usuarios CASCADE;
 CREATE TABLE Alumnos (
   ID         uuid DEFAULT gen_random_uuid() NOT NULL, 
   Matricula  int8 NOT NULL UNIQUE, 
-  UsuariosID int4 NOT NULL, 
+  UsuariosID uuid NOT NULL, 
   PRIMARY KEY (ID));
 CREATE TABLE AlumnosEnClases (
   AlumnosID    uuid NOT NULL, 
@@ -72,7 +72,7 @@ CREATE TABLE Horarios (
 CREATE TABLE Maestros (
   Id            uuid DEFAULT gen_random_uuid() NOT NULL, 
   NumTrabajador int8 NOT NULL UNIQUE, 
-  UsuariosID    int4 NOT NULL, 
+  UsuariosID    uuid NOT NULL, 
   PRIMARY KEY (Id));
 CREATE TABLE Materias (
   ID       uuid DEFAULT gen_random_uuid() NOT NULL, 
