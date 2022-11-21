@@ -17,9 +17,8 @@ exports.login = async (req, res) => {
         return;
     }
 
-
     res.status(200).json({
-        message : "[+] Correcto"
+        message : "[+] Correcto",
+        data : true
     });
-    //
 };

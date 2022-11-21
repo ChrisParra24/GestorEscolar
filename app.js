@@ -17,7 +17,6 @@ const periodosRoute = require('./routes/periodosRoute');
 const usuariosRoute = require('./routes/usuariosRoute');
 const loginRoute = require('./routes/loginRoute');
 
-
 const app = express();
 
 app.use(morgan('dev'));

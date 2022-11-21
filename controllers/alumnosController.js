@@ -3,7 +3,11 @@ const utils = require('./utils');
 
 // 127.0.0.1/alumnos
 exports.getAll = async (req,res) => {
-    const query = "SELECT * FROM alumnos";
+    let query = "SELECT alumnos.id, alumnos.usuariosid, alumnos.matricula, usuarios.nombrepila, usuarios.apppaterno, "
+    query += "usuarios.appmaterno, usuarios.email, usuarios.telefono, usuarios.username, "
+    query += "status.status FROM alumnos ";
+    query += "INNER JOIN usuarios ON alumnos.usuariosid = usuarios.id ";
+    query += "INNER JOIN status ON usuarios.statusid = status.id ";
     const resultado = await db.query(query);
 
     utils.check(res,resultado.rowCount,resultado.rows);
@@ -14,7 +18,7 @@ exports.get = async (req,res) => {
     const id = req.params.id;
     let query = "SELECT alumnos.id, alumnos.usuariosid, alumnos.matricula, usuarios.nombrepila, usuarios.apppaterno, "
     query += "usuarios.appmaterno, usuarios.email, usuarios.telefono, usuarios.username, "
-    query += "usuarios.password, status.status FROM alumnos ";
+    query += "status.status FROM alumnos ";
     query += "INNER JOIN usuarios ON alumnos.usuariosid = usuarios.id ";
     query += "INNER JOIN status ON usuarios.statusid = status.id ";
     query += "WHERE alumnos.id = $1 ; ";
@@ -27,15 +31,16 @@ exports.create = async (req, res) => {
     const matricula = req.body.matricula;
     const usuariosid = req.body.usuariosid;
 
-    let query = "SELECT * FROM usuarios WHERE id = $1 LIMIT 1";
-    const resultado = await db.query(query,[usuariosid]);
-    if (resultado.rowCount < 1) {
+    const query1 = "SELECT * FROM usuarios WHERE id = $1 LIMIT 1";
+    const result = await db.query(query1,[usuariosid]);
+    if (result.rowCount < 1) {
         res.status(404).json({
-            message : "Cree un usuario para el numero alumno:"+ matricula
+            message : "[!] Usuario Invalido | Cree un nuevo usuario para el alumno:"+ matricula
         });
+        return;
     }
-    query = "INSERT INTO alumnos (matricula,usuariosid) VALUES ($1,$2)";
-    resultado = await db.query(query,[matricula,usuariosid]);
+    const query = "INSERT INTO alumnos (matricula,usuariosid) VALUES ($1,$2)";
+    const resultado = await db.query(query,[matricula,usuariosid]);
 
     utils.check(res,resultado.rowCount,resultado.rows);
 };
