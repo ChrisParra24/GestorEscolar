@@ -1,12 +1,12 @@
 const express = require('express');
-const controlleer = require('../controllers/alumnosenclasesController');
+const controller = require('../controllers/alumnosenclasesController');
 
 const router = express.Router();
 
 
 router.route('/')
-    .get(controlleer.getAll)
-    .post(controlleer.create);
+    .get(controller.getAll)
+    .post(controller.create);
 
 router.route('/:id')
     .get(controller.get)

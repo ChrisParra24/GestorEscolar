@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS "DB_Escuela";
+DROP DATABASE IF EXISTS "LosReactivos";
 
 CREATE DATABASE "DB_Escuela"
     WITH
@@ -84,21 +85,25 @@ CREATE TABLE Periodos (
   Anio     int4 NOT NULL, 
   StatusID uuid NOT NULL, 
   PRIMARY KEY (ID));
-CREATE TABLE Status (
+CREATE TABLE "status" (
   ID     uuid DEFAULT gen_random_uuid() NOT NULL, 
-  Status text NOT NULL, 
+  status text NOT NULL, 
   PRIMARY KEY (ID));
 CREATE TABLE Usuarios (
-  ID         SERIAL NOT NULL, 
+  ID         uuid DEFAULT gen_random_uuid() NOT NULL, 
   NombrePila varchar(150) NOT NULL, 
   AppPaterno varchar(150) NOT NULL, 
   AppMaterno varchar(150) NOT NULL, 
-  Email      text, 
-  Telefono   int4 DEFAULT 1234567890 NOT NULL, 
+  Email      varchar(250), 
+  Telefono   int8 DEFAULT 1234567890 NOT NULL, 
   UserName   varchar(70) NOT NULL, 
   Password   text NOT NULL, 
   StatusID   uuid NOT NULL, 
   PRIMARY KEY (ID));
+
+----------------------------------
+------------Relations-------------
+----------------------------------
 ALTER TABLE Alumnos ADD CONSTRAINT FKAlumnos372362 FOREIGN KEY (UsuariosID) REFERENCES Usuarios (ID);
 ALTER TABLE Maestros ADD CONSTRAINT FKMaestros89169 FOREIGN KEY (UsuariosID) REFERENCES Usuarios (ID);
 ALTER TABLE Usuarios ADD CONSTRAINT FKUsuarios851960 FOREIGN KEY (StatusID) REFERENCES Status (ID);
@@ -112,3 +117,11 @@ ALTER TABLE Clases ADD CONSTRAINT FKClases180770 FOREIGN KEY (Horariosid) REFERE
 ALTER TABLE AlumnosEnClases ADD CONSTRAINT FKAlumnosEnC978512 FOREIGN KEY (StatusID) REFERENCES Status (ID);
 ALTER TABLE Periodos ADD CONSTRAINT FKPeriodos288104 FOREIGN KEY (StatusID) REFERENCES Status (ID);
 ALTER TABLE Materias ADD CONSTRAINT FKMaterias565205 FOREIGN KEY (StatusID) REFERENCES Status (ID);
+
+
+INSERT INTO "status" ("id", "status") VALUES
+('1ff8a932-5470-46e0-90e8-fe4d0abd40eb', 'Activo'),
+('c0277191-f9dd-4b73-9079-a1764a00f967', 'Inactivo'),
+('739677ac-caf9-4695-a565-f34732fde90a', 'Espera'),
+('ad058260-b00b-4a02-8198-11669986b959', 'DadoBaja'),
+('a5a41122-c656-4304-b32d-326bf3f27763', 'Jubilado');
