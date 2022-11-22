@@ -125,3 +125,8 @@ INSERT INTO "status" ("id", "status") VALUES
 ('739677ac-caf9-4695-a565-f34732fde90a', 'Espera'),
 ('ad058260-b00b-4a02-8198-11669986b959', 'DadoBaja'),
 ('a5a41122-c656-4304-b32d-326bf3f27763', 'Jubilado');
+
+INSERT INTO usuarios
+(nombrepila,apppaterno,appmaterno,email,telefono,username,password,statusid)
+VALUES
+('Christiam Alberto','Parraguirre','Lagunes','cristiam_17@live.com',2711639880,'parra2433','ejemplo1','1ff8a932-5470-46e0-90e8-fe4d0abd40eb');
