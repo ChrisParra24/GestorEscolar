@@ -26,3 +26,9 @@ npm run start
 
 Una vez que se levante el servidor, se pueden seguir haciendo cambios y no es necesario apagar el
 servidor, ya que la herramienta nodemon, nos permite trabajar y ver los cambios reflejados.
+
+### Iniziar la Base de datos
+La API depende de la base de datos Posgrest que está construida dobre docker
+~~~
+docker compose -f ./Docker_DataBase/docker-compose.yml run -docker
+~~~
