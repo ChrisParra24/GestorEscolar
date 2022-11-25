@@ -9,7 +9,7 @@ a tener la conexión entre el servidor y nuestra BD.
 El paquete a ocupar de para conectar la BD y NodeJs será **pg** 
 
 ### Iniziar la Base de datos
-La API depende de la base de datos Posgrest que está construida dobre docker
+La API depende de la base de datos PostgreSQL que está construida dobre docker
 ~~~
 docker compose -f ./Docker_DataBase/docker-compose.yml run -do
 ~~~
