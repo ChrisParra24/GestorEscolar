@@ -8,6 +8,12 @@ a tener la conexión entre el servidor y nuestra BD.
 
 El paquete a ocupar de para conectar la BD y NodeJs será **pg** 
 
+### Iniziar la Base de datos
+La API depende de la base de datos Posgrest que está construida dobre docker
+~~~
+docker compose -f ./Docker_DataBase/docker-compose.yml run -do
+~~~
+
 ### Instalación de paquetes
 Debido a que el archivo package.json esta en el repositorio bastará el siguiente comando
 
@@ -27,8 +33,3 @@ npm run start
 Una vez que se levante el servidor, se pueden seguir haciendo cambios y no es necesario apagar el
 servidor, ya que la herramienta nodemon, nos permite trabajar y ver los cambios reflejados.
 
-### Iniziar la Base de datos
-La API depende de la base de datos Posgrest que está construida dobre docker
-~~~
-docker compose -f ./Docker_DataBase/docker-compose.yml run -docker
-~~~
