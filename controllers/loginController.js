@@ -2,7 +2,6 @@ const db = require('../database/db');
 const utils = require('./utils');
 
 const crypto = require('crypto');
-//const hash = crypto.createHash('sha256').update(input).digest('base64');
 
 exports.login = async (req, res) => {
     const user = req.body.user;
@@ -12,7 +11,8 @@ exports.login = async (req, res) => {
     const resultado = await db.query(query,[user, passwordSend]);
     if (resultado.rowCount < 1) {
         res.status(404).json({
-            message : "[!] Error en el usuario o contraseña"
+            message : "[!] Error en el usuario o contraseña",
+            data : false
         });
         return;
     }
