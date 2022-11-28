@@ -10,6 +10,5 @@ router.route('/')
     .put(controller.update)
     .delete(controller.delete);
 
-
 module.exports = router;
 

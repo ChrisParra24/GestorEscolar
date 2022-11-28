@@ -31,16 +31,37 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 
+// http://127.0.0.1:3000/api/v1/materias/
 app.use('/api/v1/materias',materiaRoute);
+
+// http://127.0.0.1:3000/api/v1/status/
 app.use('/api/v1/status',statusRoute);
+
+// http://127.0.0.1:3000/api/v1/alumnos/
 app.use('/api/v1/alumnos',alumnosRoute);
+
+// http://127.0.0.1:3000/api/v1/alumnosenclases/
 app.use('/api/v1/alumnosenclases',alumnosenclasesRoute);
+
+// http://127.0.0.1:3000/api/v1/clases/
 app.use('/api/v1/clases',clasesRoute);
+
+// http://127.0.0.1:3000/api/v1/clasesenperiodos/
 app.use('/api/v1/clasesenperiodos',clasesenperiodosRoute);
+
+// http://127.0.0.1:3000/api/v1/horarios/
 app.use('/api/v1/horarios',horariosRoute);
+
+// http://127.0.0.1:3000/api/v1/maestros/
 app.use('/api/v1/maestros',maestrosRoute);
+
+// http://127.0.0.1:3000/api/v1/periodos/
 app.use('/api/v1/periodos',periodosRoute);
+
+// http://127.0.0.1:3000/api/v1/usuarios/
 app.use('/api/v1/usuarios',usuariosRoute);
+
+// http://127.0.0.1:3000/api/v1/login/
 app.use('/api/v1/login',loginRoute);
 
 module.exports = app;

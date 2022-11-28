@@ -3,14 +3,9 @@ const controller = require('../controllers/clasesenperiodosController');
 
 const router = express.Router();
 
-
-
 router.route('/')
     .get(controller.getAll)
-    .post(controller.create);
-
-router.route('/:id')
-    .get(controller.get)
+    .post(controller.multi)
     .put(controller.update)
     .delete(controller.delete);
 

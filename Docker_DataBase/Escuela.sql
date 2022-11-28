@@ -1,5 +1,4 @@
 DROP DATABASE IF EXISTS "DB_Escuela";
-DROP DATABASE IF EXISTS "LosReactivos";
 
 CREATE DATABASE "DB_Escuela"
     WITH
@@ -118,7 +117,7 @@ ALTER TABLE AlumnosEnClases ADD CONSTRAINT FKAlumnosEnC978512 FOREIGN KEY (Statu
 ALTER TABLE Periodos ADD CONSTRAINT FKPeriodos288104 FOREIGN KEY (StatusID) REFERENCES Status (ID);
 ALTER TABLE Materias ADD CONSTRAINT FKMaterias565205 FOREIGN KEY (StatusID) REFERENCES Status (ID);
 
-
+------------ Adding Status -------------
 INSERT INTO "status" ("id", "status") VALUES
 ('1ff8a932-5470-46e0-90e8-fe4d0abd40eb', 'Activo'),
 ('c0277191-f9dd-4b73-9079-a1764a00f967', 'Inactivo'),
@@ -126,6 +125,12 @@ INSERT INTO "status" ("id", "status") VALUES
 ('ad058260-b00b-4a02-8198-11669986b959', 'DadoBaja'),
 ('a5a41122-c656-4304-b32d-326bf3f27763', 'Jubilado');
 
+------------ Adding Periodos -------------
+INSERT INTO "public"."periodos" ("id", "nombre", "anio", "statusid") VALUES
+('0cf90499-b4d5-4d32-8810-f570ec50304b', 'Primavera', 2022, '1ff8a932-5470-46e0-90e8-fe4d0abd40eb'),
+('b055433e-91fb-4c27-860f-2ee085a0bbe9', 'Otoño', 2021, 'c0277191-f9dd-4b73-9079-a1764a00f967');
+
+------------ Adding Users -------------
 INSERT INTO usuarios
 (nombrepila,apppaterno,appmaterno,email,telefono,username,password,statusid)
 VALUES
