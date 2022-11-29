@@ -7,7 +7,7 @@ exports.login = async (req, res) => {
     const user = req.body.user;
     const passwordSend = req.body.password;
 
-    let query = "SELECT id,nombrepila,apppaterno,username,roluser,statusid "
+    let query = "SELECT id,nombrepila,apppaterno,username,roluser,statusid ";
     query += "FROM usuarios WHERE username = $1 AND password = $2 LIMIT 1";
     const resultado = await db.query(query,[user, passwordSend]);
     if (resultado.rowCount < 1) {
