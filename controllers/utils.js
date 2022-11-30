@@ -4,7 +4,7 @@ exports.check = (res,rowCount, data) => {
             message : "[!] No records found" 
         });
     } else {
-        res.status(202).json({
+        res.status(200).json({
             message : "[i] success!",
             data : data
         });

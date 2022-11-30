@@ -88,24 +88,26 @@ CREATE TABLE "status" (
   ID     uuid DEFAULT gen_random_uuid() NOT NULL, 
   status text NOT NULL, 
   PRIMARY KEY (ID));
-CREATE TABLE Usuarios (
-  ID         uuid DEFAULT gen_random_uuid() NOT NULL, 
-  NombrePila varchar(150) NOT NULL, 
-  AppPaterno varchar(150) NOT NULL, 
-  AppMaterno varchar(150) NOT NULL, 
-  Email      varchar(250), 
-  Telefono   int8 DEFAULT 1234567890 NOT NULL, 
-  UserName   varchar(70) NOT NULL, 
-  Password   text NOT NULL, 
-  StatusID   uuid NOT NULL, 
-  PRIMARY KEY (ID));
+CREATE TABLE "public"."usuarios" (
+    "id" uuid NOT NULL DEFAULT gen_random_uuid(),
+    "nombrepila" varchar(150) NOT NULL,
+    "apppaterno" varchar(150) NOT NULL,
+    "appmaterno" varchar(150) NOT NULL,
+    "email" varchar(250),
+    "telefono" int8 NOT NULL DEFAULT 1234567890,
+    "username" varchar(70) NOT NULL,
+    "password" text NOT NULL,
+    "statusid" uuid NOT NULL,
+    "roluser" text,
+    CONSTRAINT "fkusuarios851960" FOREIGN KEY ("statusid") REFERENCES "public"."status"("id"),
+    PRIMARY KEY ("id")
+);
 
 ----------------------------------
 ------------Relations-------------
 ----------------------------------
 ALTER TABLE Alumnos ADD CONSTRAINT FKAlumnos372362 FOREIGN KEY (UsuariosID) REFERENCES Usuarios (ID);
 ALTER TABLE Maestros ADD CONSTRAINT FKMaestros89169 FOREIGN KEY (UsuariosID) REFERENCES Usuarios (ID);
-ALTER TABLE Usuarios ADD CONSTRAINT FKUsuarios851960 FOREIGN KEY (StatusID) REFERENCES Status (ID);
 ALTER TABLE AlumnosEnClases ADD CONSTRAINT FKAlumnosEnC283022 FOREIGN KEY (AlumnosID) REFERENCES Alumnos (ID);
 ALTER TABLE AlumnosEnClases ADD CONSTRAINT FKAlumnosEnC92263 FOREIGN KEY (ClasesID) REFERENCES Clases (ID);
 ALTER TABLE ClasesEnPeriodos ADD CONSTRAINT FKClasesEnPe175289 FOREIGN KEY (PeriodosID) REFERENCES Periodos (ID);
@@ -131,7 +133,7 @@ INSERT INTO "public"."periodos" ("id", "nombre", "anio", "statusid") VALUES
 ('b055433e-91fb-4c27-860f-2ee085a0bbe9', 'Otoño', 2021, 'c0277191-f9dd-4b73-9079-a1764a00f967');
 
 ------------ Adding Users -------------
-INSERT INTO usuarios
-(nombrepila,apppaterno,appmaterno,email,telefono,username,password,statusid)
-VALUES
-('Christiam Alberto','Parraguirre','Lagunes','cristiam_17@live.com',2711639880,'parra2433','ejemplo1','1ff8a932-5470-46e0-90e8-fe4d0abd40eb');
+INSERT INTO "public"."usuarios" ("id", "nombrepila", "apppaterno", "appmaterno", "email", "telefono", "username", "password", "statusid", "roluser") VALUES
+('116a25c7-c4f3-44d7-963b-a8b7e25cd5bd', 'Christiam Alberto', 'Parraguirre', 'Lagunes', 'cristiam_17@live.com', 2711639880, 'parra2433', 'ejemplo1', '1ff8a932-5470-46e0-90e8-fe4d0abd40eb', 'Alumno'),
+('6e5de5f9-bf0a-4b6a-b9b8-abab2691a1c2', 'Pedro', 'perez', 'lozada', 'padmi@fatake.com.mx', 2221651235, 'admin', 'admin', '1ff8a932-5470-46e0-90e8-fe4d0abd40eb', 'Admin'),
+('fb70e349-34a7-4fd4-919e-813a3b7a1c60', 'Marco', 'Hernandez', 'Hernandez', 'phernandez@escuela.com.mx', 2221651235, 'some', 'some123', '1ff8a932-5470-46e0-90e8-fe4d0abd40eb', 'Maestro');
