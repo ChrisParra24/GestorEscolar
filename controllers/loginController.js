@@ -22,3 +22,11 @@ exports.login = async (req, res) => {
         data : true
     });
 };
+
+exports.get = async (req,res) => {
+    res.status(200).json({
+        message : "[i] Loggin activo",
+        data : true
+    });
+    return;
+};
